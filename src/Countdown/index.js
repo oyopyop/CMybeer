@@ -1,12 +1,14 @@
 import "./styles.css";
 import { number } from "prop-types";
 import React from "react";
+import useCunter from "../useCunter";
 
 export default function Countdown({ initialCount = 100, step = 1 }) {
-  const [count, setCount] = React.useState(initialCount);
+  //const [count, setCount] = React.useState(initialCount);
+  // const decrement = () => setCount(Math.max(count - step, 0));
+  // const reset = () => setCount(initialCount);
 
-  const decrement = () => setCount(Math.max(count - step, 0));
-  const reset = () => setCount(initialCount);
+  const [count, { decrement, reset }] = useCunter(initialCount, step);
 
   return (
     <>
