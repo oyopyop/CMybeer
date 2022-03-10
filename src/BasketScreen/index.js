@@ -6,7 +6,7 @@ export default function BasketScreen() {
       <h1>C MY BEER</h1>
       <h2>BasketScreen</h2>
       <nav>
-        <Link to="/">Voir mon panier</Link>
+        <Link to="/">Voir mon home</Link>
       </nav>
     </>
   );
