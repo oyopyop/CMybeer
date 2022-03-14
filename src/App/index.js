@@ -6,6 +6,7 @@ import HomeScreen from "../HomeScreen";
 import BasketScreen from "../BasketScreen";
 import BeerScreen from "../BeerScreen";
 import theme from "./theme";
+import CountdownScreen from "../CountdownScreen";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
+          <Route path="/countdown" element={<CountdownScreen />} />
           <Route path="/basket" element={<BasketScreen />} />
           <Route path="/beers/:id" element={<BeerScreen />} />
         </Routes>
