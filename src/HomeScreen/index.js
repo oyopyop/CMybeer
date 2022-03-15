@@ -1,7 +1,7 @@
 import { Grid, CircularProgress } from "@mui/material";
 import React from "react";
 
-import useBeers from "../useBeers";
+import { useBeers } from "../hooks";
 import Screen from "../Screen";
 import Beer from "../Beer";
 

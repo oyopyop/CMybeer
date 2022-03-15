@@ -1,7 +1,7 @@
 import "./styles.css";
 import { number } from "prop-types";
 import React from "react";
-import useCunter from "../useCunter";
+import { useCunter } from "../hooks";
 
 export default function Countdown({ initialCount = 100, step = 1 }) {
   //const [count, setCount] = React.useState(initialCount);
