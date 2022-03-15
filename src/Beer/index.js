@@ -18,8 +18,10 @@ const useQuantity = () => {
   return [quantity, handleChange];
 };
 
-export default function Beer({ id }) {
+export default function Beer({ id, maxQuantity = 5 }) {
   const [quantity, setQuantity] = useQuantity();
+
+  const items = new Array(maxQuantity).fill(null);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -49,11 +51,10 @@ export default function Beer({ id }) {
             size="small"
             onChange={setQuantity}
           >
-            <MenuItem value={1}>1 bouteille</MenuItem>
-            <MenuItem value={2}>2 bouteilles</MenuItem>
-            <MenuItem value={3}>3 bouteilles</MenuItem>
-            <MenuItem value={4}>4 bouteilles</MenuItem>
-            <MenuItem value={5}>5 bouteilles</MenuItem>
+            {items.map((_, i) => (
+              <MenuItem key={i} value={i + 1}>{`${i + 1} bouteille`}</MenuItem>
+            ))}
+            ;
           </Select>
         </FormControl>
         <Button size="small">Ajouter</Button>
@@ -63,5 +64,6 @@ export default function Beer({ id }) {
 }
 
 Screen.propTypes = {
-  id: number,
+  id: number.isRequired,
+  maxQuantity: number,
 };
