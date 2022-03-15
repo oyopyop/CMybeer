@@ -52,7 +52,9 @@ export default function Beer({ id, maxQuantity = 5 }) {
             onChange={setQuantity}
           >
             {items.map((_, i) => (
-              <MenuItem key={i} value={i + 1}>{`${i + 1} bouteille`}</MenuItem>
+              <MenuItem key={i} value={i + 1}>{`${
+                i + 1
+              } bouteille(s)`}</MenuItem>
             ))}
             ;
           </Select>
