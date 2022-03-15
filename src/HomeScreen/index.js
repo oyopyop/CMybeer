@@ -6,23 +6,29 @@ import Screen from "../Screen";
 import Beer from "../Beer";
 
 export default function HomeScreen() {
-  const [beers] = useBeers();
+  const { isLoading, beers } = useBeers();
 
-  const hasbeer = beers.length > 0;
+  if (isLoading)
+    return (
+      <Screen>
+        <CircularProgress />
+      </Screen>
+    );
+
+  // if (error) {
+  //   console.log("BUG 1224");
+  //   return "Pas de resultat. Réessayer plus tard";
+  // };
 
   return (
     <Screen>
-      {hasbeer ? (
-        <Grid container spacing={2} justifyContent="space-between">
-          {beers.map((beer) => (
-            <Grid item key={beer.id}>
-              <Beer beer={beer} />
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <CircularProgress />
-      )}
+      <Grid container spacing={2} justifyContent="space-between">
+        {beers.map((beer) => (
+          <Grid item key={beer.id}>
+            <Beer beer={beer} />
+          </Grid>
+        ))}
+      </Grid>
     </Screen>
   );
 }
