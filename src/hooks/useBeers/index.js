@@ -12,7 +12,7 @@ export default function useBeers({ categoryId } = {}) {
   });
 
   const { isLoading, error, data } = useQuery(
-    ["beers", categoryId],
+    ["beers", cleanCat],
     cMyBeersFetch(beersUrl)
   );
 

@@ -1,19 +1,26 @@
 import { Drawer, Typography } from "@mui/material";
 import { bool, func } from "prop-types";
 import * as React from "react";
-//import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import ImageIcon from "@mui/icons-material/Image";
-import WorkIcon from "@mui/icons-material/Work";
-import BeachAccessIcon from "@mui/icons-material/BeachAccess";
-import Divider from "@mui/material/Divider";
-//import { Box } from "@mui/system";
 import { List, Title, Total } from "./styles";
+import { useBeers } from "../hooks";
+import BasketItem from "../BasketItem";
+import Price from "../Price";
+
+const sumPrice = (subTotal, { quantity, price }) => subTotal + quantity * price;
 
 export default function Basket({ open = false, toggle = Function.prototype }) {
+  const [basket] = React.useReducer(() => {}, { lFHjKe: 4, CFIZtr: 6 });
+
+  const { isLoading, beers } = useBeers();
+
+  const beersInBasket = isLoading
+    ? []
+    : beers
+        .filter(({ id }) => Object.keys(basket).includes(id))
+        .map((beer) => ({ ...beer, quantity: basket[beer.id] }));
+
+  const total = String(beersInBasket.reduce(sumPrice, 0));
+
   return (
     <Drawer anchor="right" open={open} onClose={toggle}>
       <Title
@@ -26,39 +33,20 @@ export default function Basket({ open = false, toggle = Function.prototype }) {
         Mon Panier
       </Title>
       <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <ImageIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-        </ListItem>
-        <Divider variant="inset" component="li" />
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <WorkIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Work" secondary="Jan 7, 2014" />
-        </ListItem>
-        <Divider variant="inset" component="li" />
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <BeachAccessIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Vacation" secondary="July 20, 2014" />
-        </ListItem>
+        {beersInBasket.map((beer, i) => (
+          <BasketItem
+            key={beer.id}
+            {...beer}
+            divider={i !== beersInBasket.length - 1}
+          ></BasketItem>
+        ))}
       </List>
       <Total>
         <Typography variant="h5" component="h6">
           Total
         </Typography>
         <Typography variant="h5" component="h6">
-          12.34
+          <Price value={total} />
         </Typography>
       </Total>
     </Drawer>

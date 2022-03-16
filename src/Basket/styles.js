@@ -13,7 +13,7 @@ export const List = styled(MuiList)({
 export const Total = styled(MuiBox)(({ theme }) => ({
   Margin: "1rem",
   padding: "1rem",
-  borderRadius: 10,
+  borderRadius: theme.spacing(1),
   backgroundColor: "",
   display: "flex",
   justifyContent: "space-between",
