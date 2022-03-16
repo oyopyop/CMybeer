@@ -8,13 +8,16 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useSelect } from "../hooks";
+import { BasketContext } from "../contexts";
 
 export default function Beer({ beer, maxQuantity = 5 }) {
   const [quantity, setQuantity] = useSelect(1);
 
+  const { addToBasket } = BasketContext.useContext();
+
   const items = new Array(maxQuantity).fill(null);
 
-  const { name, description, imageUri } = beer;
+  const { id, name, description, imageUri } = beer;
 
   return (
     <Card sx={{ maxWidth: 345 }} component="article">
@@ -51,7 +54,9 @@ export default function Beer({ beer, maxQuantity = 5 }) {
             ;
           </Select>
         </FormControl>
-        <Button size="small">Ajouter</Button>
+        <Button size="small" onClick={addToBasket(id, quantity)}>
+          Ajouter
+        </Button>
       </CardActions>
     </Card>
   );

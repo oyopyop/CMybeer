@@ -2,7 +2,6 @@ import { Drawer, Typography } from "@mui/material";
 import { bool, func } from "prop-types";
 import * as React from "react";
 import { List, Title, Total } from "./styles";
-import { useBeers } from "../hooks";
 import BasketItem from "../BasketItem";
 import Price from "../Price";
 import { BasketContext } from "../contexts";
