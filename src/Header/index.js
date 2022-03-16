@@ -9,8 +9,9 @@ import {
 } from "@mui/material";
 import { ShoppingBasket } from "@mui/icons-material";
 import { Link } from "./styles";
+import { func } from "prop-types";
 
-export default function Header() {
+export default function Header({ onToggleBasket = Function.prototype }) {
   const mainNavigation = [
     { path: "/", name: "Les bieres" },
     { path: "/countdown", name: "Countdown" },
@@ -35,6 +36,7 @@ export default function Header() {
             size="large"
             aria-label="show 4 new mails"
             color="inherit"
+            onClick={onToggleBasket}
           >
             <Badge badgeContent={4} color="error">
               <ShoppingBasket />
@@ -45,3 +47,7 @@ export default function Header() {
     </AppBar>
   );
 }
+
+Header.propTypes = {
+  onToggleBasket: func,
+};
