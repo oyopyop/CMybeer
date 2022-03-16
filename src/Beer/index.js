@@ -7,26 +7,17 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-
-const useQuantity = () => {
-  const [quantity, setQuantity] = React.useState(1);
-
-  const handleChange = (event) => {
-    setQuantity(event.target.value);
-  };
-
-  return [quantity, handleChange];
-};
+import { useSelect } from "../hooks";
 
 export default function Beer({ beer, maxQuantity = 5 }) {
-  const [quantity, setQuantity] = useQuantity();
+  const [quantity, setQuantity] = useSelect(1);
 
   const items = new Array(maxQuantity).fill(null);
 
   const { name, description, imageUri } = beer;
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} component="article">
       <CardMedia
         component="img"
         height="140"
@@ -34,7 +25,7 @@ export default function Beer({ beer, maxQuantity = 5 }) {
         alt="green iguana"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="h3">
           {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">

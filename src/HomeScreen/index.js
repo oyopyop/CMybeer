@@ -1,19 +1,26 @@
-import { Grid, CircularProgress } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import React from "react";
 
-import { useBeers } from "../hooks";
-import Screen from "../Screen";
+import { useBeers, useSelect } from "../hooks";
 import Beer from "../Beer";
+import Filter from "../Filter";
+import Screen from "../Screen";
 
 export default function HomeScreen() {
-  const { isLoading, beers } = useBeers();
+  const [category, setCategory] = useSelect();
+  const { isLoading, beers } = useBeers({ categoryId: category });
+  // const { isLoading, beers } = useBeers({
+  //   categoryId: value !== "" ? value : undefined,
+  // });
 
-  if (isLoading)
-    return (
-      <Screen>
-        <CircularProgress />
-      </Screen>
-    );
+  // if (isLoading)
+  //   return (
+  //     <Screen>
+  //       <Filter category={category} setCategory={setCategory} />
+  //       <br />
+  //       <CircularProgress />
+  //     </Screen>
+  //   );
 
   // if (error) {
   //   console.log("BUG 1224");
@@ -22,13 +29,19 @@ export default function HomeScreen() {
 
   return (
     <Screen>
-      <Grid container spacing={2} justifyContent="space-between">
-        {beers.map((beer) => (
-          <Grid item key={beer.id}>
-            <Beer beer={beer} />
-          </Grid>
-        ))}
-      </Grid>
+      <Filter category={category} setCategory={setCategory} />
+      <br />
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <Grid container justifyContent="space-between" spacing={4}>
+          {beers.map((beer) => (
+            <Grid key={beer.id} item>
+              <Beer beer={beer} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Screen>
   );
 }

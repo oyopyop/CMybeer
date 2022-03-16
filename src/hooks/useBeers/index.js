@@ -1,12 +1,20 @@
 import { useQuery } from "react-query";
+import queryString from "query-string";
+
 import cMyBeersFetch from "../../cMyBeersFetch";
 
-export default function useBeers() {
-  // const { isLoading, error, data } = useQuery("beers", () =>
-  //   fetch(`${apiUri}/beers`).then(responseToJson)
-  // );
+export default function useBeers({ categoryId } = {}) {
+  const cleanCat =
+    categoryId === "" || categoryId === "0" ? undefined : categoryId;
+  const beersUrl = queryString.stringifyUrl({
+    url: "/beers",
+    query: { categoryId: cleanCat },
+  });
 
-  const { isLoading, error, data } = useQuery("beers", cMyBeersFetch("/beers"));
+  const { isLoading, error, data } = useQuery(
+    ["beers", categoryId],
+    cMyBeersFetch(beersUrl)
+  );
 
   return { isLoading, error, beers: data };
 }
