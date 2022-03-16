@@ -5,21 +5,10 @@ import { List, Title, Total } from "./styles";
 import { useBeers } from "../hooks";
 import BasketItem from "../BasketItem";
 import Price from "../Price";
-
-const sumPrice = (subTotal, { quantity, price }) => subTotal + quantity * price;
+import { BasketContext } from "../contexts";
 
 export default function Basket({ open = false, toggle = Function.prototype }) {
-  const [basket] = React.useReducer(() => {}, { lFHjKe: 4, CFIZtr: 6 });
-
-  const { isLoading, beers } = useBeers();
-
-  const beersInBasket = isLoading
-    ? []
-    : beers
-        .filter(({ id }) => Object.keys(basket).includes(id))
-        .map((beer) => ({ ...beer, quantity: basket[beer.id] }));
-
-  const total = String(beersInBasket.reduce(sumPrice, 0));
+  const { totalPrice, basketItems } = BasketContext.useContext();
 
   return (
     <Drawer anchor="right" open={open} onClose={toggle}>
@@ -33,11 +22,11 @@ export default function Basket({ open = false, toggle = Function.prototype }) {
         Mon Panier
       </Title>
       <List>
-        {beersInBasket.map((beer, i) => (
+        {basketItems.map((beer, i) => (
           <BasketItem
             key={beer.id}
             {...beer}
-            divider={i !== beersInBasket.length - 1}
+            divider={i !== basketItems.length - 1}
           ></BasketItem>
         ))}
       </List>
@@ -46,7 +35,7 @@ export default function Basket({ open = false, toggle = Function.prototype }) {
           Total
         </Typography>
         <Typography variant="h5" component="h6">
-          <Price value={total} />
+          <Price value={totalPrice} />
         </Typography>
       </Total>
     </Drawer>
