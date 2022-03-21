@@ -1,6 +1,5 @@
-import { render as rtlRender, screen } from "@testing-library/react";
+import { render as rtlRender } from "@testing-library/react";
 //import userEvent from "@testing-library/user-event";
-import HomeScreen from ".";
 import { BasketContext } from "../contexts";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
