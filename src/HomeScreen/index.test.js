@@ -1,13 +1,22 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 //import userEvent from "@testing-library/user-event";
-
 import HomeScreen from ".";
+import { BasketContext } from "../contexts";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import { QueryClient, QueryClientProvider } from "react-query";
+import render from "../testUtils";
 
-describe("Countdown", () => {
-  describe("without any props", () => {
-    it("renders counter", () => {
-      render(<HomeScreen />);
-      expect(10).toBeInTheDocument();
-    });
+describe("HomeScreen", () => {
+  it("display a filter", () => {
+    render(<HomeScreen />);
+    expect(
+      screen.getByRole("button", { name: "Catégorie" })
+    ).toBeInTheDocument();
+  });
+
+  xit("display a beer list", () => {
+    render(<HomeScreen />);
+    expect(screen.getByRole("button", { name: "counter" })).toBeInTheDocument();
   });
 });
