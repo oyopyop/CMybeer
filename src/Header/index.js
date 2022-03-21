@@ -25,7 +25,7 @@ export default function Header({ onToggleBasket = Function.prototype }) {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography variant="h6" noWrap component="h1">
-            LOGO
+            C My Beer
           </Typography>
           <Box sx={{ display: "flex" }}>
             {mainNavigation.map(({ name, path }) => (
