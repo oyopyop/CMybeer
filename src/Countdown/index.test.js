@@ -32,7 +32,7 @@ describe("Countdown", () => {
 
       userEvent.click(countdownButtonElement());
 
-      expect(counterElement(99)).toBeInTheDocument();
+      expect(counterElement()).toHaveTextContent(/^99$/);
     });
 
     it("resets while clicking on a reset button", () => {
@@ -41,7 +41,7 @@ describe("Countdown", () => {
       userEvent.click(countdownButtonElement());
       userEvent.click(resetButtonElement());
 
-      expect(counterElement(100)).toBeInTheDocument();
+      expect(counterElement()).toHaveTextContent(/^100$/);
     });
   });
 
