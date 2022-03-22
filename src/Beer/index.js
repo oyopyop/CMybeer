@@ -17,6 +17,8 @@ export default function Beer({ beer, maxQuantity = 5 }) {
 
   const items = new Array(maxQuantity).fill(null);
 
+  if (!beer) return null;
+
   const { id, name, description, imageUri } = beer;
 
   return (
