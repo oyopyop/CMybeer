@@ -1,4 +1,4 @@
-import theme from "./theme";
+import theme from "./";
 
 describe("theme", () => {
   it("retruns a correct setting of value", () => {
