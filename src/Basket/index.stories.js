@@ -2,7 +2,7 @@ import Basket from "./";
 import { BasketContext } from "../contexts";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "../App/theme";
+import theme from "../ds/theme";
 
 export default {
   title: "Basket",

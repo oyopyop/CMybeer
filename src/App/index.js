@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import HomeScreen from "../HomeScreen";
 import BasketScreen from "../BasketScreen";
 import BeerScreen from "../BeerScreen";
-import theme from "./theme";
+import theme from "../ds/theme";
 import CountdownScreen from "../CountdownScreen";
 import { BasketContext } from "../contexts";
 
