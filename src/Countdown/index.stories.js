@@ -3,7 +3,7 @@ import React from "react";
 import Countdown from "./";
 
 export default {
-  title: "Countdown",
+  title: "Design System/Organism/Countdown",
   component: Countdown,
 };
 

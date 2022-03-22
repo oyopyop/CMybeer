@@ -5,11 +5,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../ds/theme";
 
 export default {
-  title: "Basket",
+  title: "Domain/Basket",
   component: Basket,
 };
-
-//export const Default = () => <Basket />;
 
 const queryClient = new QueryClient();
 
